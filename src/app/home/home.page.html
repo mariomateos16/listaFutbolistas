@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Listado de Futbolistas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <ion-input [(ngModel)]="filtro" placeholder="Introduce los datos del filtro">
+  </ion-input>
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let futbolista of futbolistas | async">  
+          <ion-col *ngIf="filtro=='' || futbolista.name.first.includes(filtro)" size-xl="2" side-lg="2" size-md="4" size-sm="6" size-xs="12">
+            <ion-card>
+              <ion-card-content>
+                <ion-card-title>{{ futbolista.nombre }} {{ futbolista.apellido }}</ion-card-title>
+                <h2>Equipo: {{ futbolista.equipo }}</h2>
+                <h3>Edad: {{ futbolista.edad }}</h3>
+                <p>Goles: {{ futbolista.goles }}, Asistencias: {{ futbolista.asistencias }}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+</ion-content>
